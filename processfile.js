@@ -13,8 +13,8 @@ async function Process(filename, dir, size, threadId = "single") {
 		.fps(30)
 
 		// h264
-		.videoCodec("libx264")
-		.audioCodec("libmp3lame")
+		//.videoCodec("libx264")
+		//.audioCodec("libmp3lame")
 		.addOptions(["-crf 28"])
 		.size(`?x${size}`) //, HD, FHD, SD dimensions
 		.on("end", () => {
