@@ -8,14 +8,17 @@ async function Process(filename, dir, size, threadId = "single") {
 	if (isWindows) {
 		ffmpeg.setFfmpegPath("C:\\ffmpeg\\bin\\ffmpeg.exe")
 	}
+	 //console.log('file',filename)
 
-	ffmpeg({ source: filename, logger: console })
-		.fps(30)
+	ffmpeg({ source: filename, })
+		.addInputOptions(["-hwaccel cuda","-r 30"])
 
-		// h264
-		//.videoCodec("libx264")
-		//.audioCodec("libmp3lame")
+		//h264
+		.withVideoCodec("h264_nvenc")
+	
+	
 		.addOptions(["-crf 28"])
+
 		.size(`?x${size}`) //, HD, FHD, SD dimensions
 		.on("end", () => {
 			console.timeEnd(`${threadId}`)
@@ -30,3 +33,4 @@ async function Process(filename, dir, size, threadId = "single") {
 }
 
 export default Process
+// sudo  ffmpeg -y -vsync 0 -hwaccel cuda -hwaccel_output_format cuda -i ../video/sampleFHD.mp4 -vf scale_npp=1280:720   output.mp4

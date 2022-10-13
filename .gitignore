@@ -1,9 +1,8 @@
 /target
 /node_modules/
-./sampleFHD.mp4
-./sample4k.mp4
-/nv-codec-headers/
-/ffmpeg
+*.mp4
+
+
 
 # Added by cargo
 #
