@@ -1,5 +1,5 @@
 import compressFile from "./processfile.js"
-let sizes = [720, 480]
+let sizes = [1080,720, 480]
 let file = process.argv[2] // process arguments
 //
 //console.time("singlethreaded")
