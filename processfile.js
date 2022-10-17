@@ -1,10 +1,14 @@
 import ffmpeg from "fluent-ffmpeg"
 import path from "path"
 
+
 const isWindows = process.platform.includes("win")
-async function Process(filename, dir, size, threadId = "single",hardwareAccel=false) {
+ function Process(filename, dir, size, threadId = "single",hardwareAccel=false) {
 	console.time(`${threadId}`)
-	let [name, ext] = filename?.split(".")
+
+	let [name, ext] = filename?.split(".");
+	
+	let finalname = `${name}${size}P.${ext}`;
 	//process  the compression and size formating;
 	if (isWindows) {
 		ffmpeg.setFfmpegPath("C:\\ffmpeg\\bin\\ffmpeg.exe")
@@ -15,6 +19,8 @@ async function Process(filename, dir, size, threadId = "single",hardwareAccel=fa
 	 * recompile ffmpeg with hardwareAccel support (https://docs.nvidia.com/video-technologies/video-codec-sdk/ffmpeg-with-nvidia-gpu/)
 	 */
  if (hardwareAccel) {
+
+	 return new Promise((resolve,reject)=> { 
 		ffmpeg({ source: filename, })
 		.addInputOptions(["-hwaccel cuda","-r 30"])
 
@@ -25,17 +31,24 @@ async function Process(filename, dir, size, threadId = "single",hardwareAccel=fa
 		.addOptions(["-crf 28"])
 
 		.size(`?x${size}`) //, HD, FHD, SD dimensions
+		//.on("progress", (progress) => console.log(progress.percent))
 		.on("end", () => {
 			console.timeEnd(`${threadId}`)
+			resolve(finalname)
+			 
 		})
 		.on("error", (err) => {
-			console.log(err)
+			 reject(err)
 		})
 
-		.save(`./${dir}/${name}${size}P.${ext}`)
+		.save(`./${dir}/${name}${size}P.${ext}`);
+
+	});
 	}
 	else { 
-		 ffmpeg({ source: filename, logger: console })
+	
+		  return new Promise((resolve,reject)=> { 
+		ffmpeg({ source: filename, })
 		.fps(30)
 
 		// h264
@@ -43,16 +56,19 @@ async function Process(filename, dir, size, threadId = "single",hardwareAccel=fa
 		.audioCodec("libmp3lame")
 		.addOptions(["-crf 28"])
 		.size(`?x${size}`) //, HD, FHD, SD dimensions
-		.on("end", (result) => {
-			console.log(result)
+		//.on("progress", (progress) => console.log(progress.percent))
+		.on("end", () => {
 			console.timeEnd(`${threadId}`)
+			resolve(finalname)
+			 
 		})
 		.on("error", (err) => {
-			console.log(err)
+			 reject(err)
 		})
 
-		.save(`./${dir}/${name}${size}P.${ext}`)
+		.save(`./${dir}/${name}${size}P.${ext}`);
 
+	});
 		//console.log(file)
 	}
 	//*/
@@ -60,3 +76,11 @@ async function Process(filename, dir, size, threadId = "single",hardwareAccel=fa
 
 export default Process
 // sudo  ffmpeg -y -vsync 0 -hwaccel cuda -hwaccel_output_format cuda -i ../video/sampleFHD.mp4 -vf scale_npp=1280:720   output.mp4
+/*
+.fps(30)
+
+		// h264
+		.videoCodec("libx264")
+		.audioCodec("libmp3lame")
+		.addOptions(["-crf 28"])
+*/
