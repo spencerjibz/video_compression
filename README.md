@@ -4,17 +4,22 @@ Simple tutorial  of video compression with [fluent-ffmpeg](https://github.com/fl
 ### Requirments
 - Nodejs versions with worker_threads & esmodule support
 - ffmpeg ;
+- Optional hardware acceleration requirements (Nvidia GPU with nvenc support)
 
 ### Features
 - h264 compression with a crf of 28,
 - Both single thread(singlethreaded.js) and multi-thread workloads(index.js&)
 - Resizing to any resolution (provides an array of resolutions)
 - Conversion to mp4
-
-### In the works
-- Hardware acceleration (GPU)
+- Hardware accelerated video compression with cuda support(using h264_nevc)
 
 ### usage
+ **Note:**
+ - Before testing, create a folder named compressed in the root directory.
+ - For GPU acceleration, follow  the instructions [here](https://docs.nvidia.com/video-technologies/video-codec-sdk/ffmpeg-with-nvidia-gpu/) to add hardware acceleration to ffmpeg.
+<Br>
+
+
 1. single threaded <Br>
 ```bash
  node singlethreaded.js [InputFilenamewithExt]
@@ -32,5 +37,11 @@ Simple tutorial  of video compression with [fluent-ffmpeg](https://github.com/fl
 ```sh
   ./cleanup.sh 
 ```
+4. Compare  video file sizes of original and compressed;
+```bash
+ ./checkVideoSize.sh
+```
 
 
+#### End
+thanks
