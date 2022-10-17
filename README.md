@@ -9,7 +9,7 @@ Simple tutorial  of video compression with [fluent-ffmpeg](https://github.com/fl
 ### Features
 - h264 compression with a crf of 28,
 - Both single thread(singlethreaded.js) and multi-thread workloads(index.js&)
-- Resizing to any resolution (provides an array of resolutions)
+- Resizing to any resolution (when provided  an array of resolutions)
 - Conversion to mp4
 - Hardware accelerated video compression with cuda support(using h264_nevc)
 
