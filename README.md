@@ -16,7 +16,7 @@ Simple tutorial  of video compression with [fluent-ffmpeg](https://github.com/fl
 ### usage
  **Note:**
  - Before testing, create a folder named compressed in the root directory.
- - For GPU acceleration, follow  the instructions [here](https://docs.nvidia.com/video-technologies/video-codec-sdk/ffmpeg-with-nvidia-gpu/) to add hardware acceleration to ffmpeg.
+ - For GPU acceleration, follow  the instructions [here](https://docs.nvidia.com/video-technologies/video-codec-sdk/ffmpeg-with-nvidia-gpu/) to add hardware acceleration support to ffmpeg. (Nividia only).
 <Br>
 
 
