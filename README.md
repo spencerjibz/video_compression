@@ -4,7 +4,7 @@ Simple tutorial  of video compression with [fluent-ffmpeg](https://github.com/fl
 ### Requirments
 - Nodejs versions with worker_threads & esmodule support
 - ffmpeg ;
-- Optional hardware acceleration requirements (Nvidia GPU with nvenc support)
+- ***Optional:*** Hardware acceleration requirements (Nvidia GPU with nvenc support)
 
 ### Features
 - h264 compression with a crf of 28,
