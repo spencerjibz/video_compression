@@ -51,7 +51,7 @@ async function Process(filename, dir, size, threadId = "single",hardwareAccel=fa
 		})
 
 		.save(`./${dir}/${Date.now()}_${size}P_${path.join(filename)}`)
-		return file;
+
 		//console.log(file)
 	}
 	//*/
