@@ -24,4 +24,8 @@ for (let i = 0; i < sizes.length; i++) {
 	worker.on("message", (msg) => {
 		str += `,${msg}`
 	})
+	worker.on("error", (err) => {
+		throw err
+	})
 }
+
