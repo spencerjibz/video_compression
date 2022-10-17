@@ -4,6 +4,7 @@ import path from "path"
 const isWindows = process.platform.includes("win")
 async function Process(filename, dir, size, threadId = "single",hardwareAccel=false) {
 	console.time(`${threadId}`)
+	let [name, ext] = filename?.split(".")
 	//process  the compression and size formating;
 	if (isWindows) {
 		ffmpeg.setFfmpegPath("C:\\ffmpeg\\bin\\ffmpeg.exe")
@@ -50,7 +51,7 @@ async function Process(filename, dir, size, threadId = "single",hardwareAccel=fa
 			console.log(err)
 		})
 
-		.save(`./${dir}/${Date.now()}_${size}P_${path.join(filename)}`)
+		.save(`./${dir}/${name}${size}P.${ext}`)
 
 		//console.log(file)
 	}
