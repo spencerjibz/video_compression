@@ -32,7 +32,7 @@ async function Process(filename, dir, size, threadId = "single",hardwareAccel=fa
 			console.log(err)
 		})
 
-		.save(`./${dir}/${Date.now()}_${size}P_${path.join(filename)}`)
+		.save(`./${dir}/${name}${size}P.${ext}`)
 	}
 	else { 
 		 ffmpeg({ source: filename, logger: console })
