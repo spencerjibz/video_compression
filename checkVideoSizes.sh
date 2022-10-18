@@ -1,6 +1,9 @@
  #/bash
  echo parentdir &&  ls -lah *.mp4 
+ echo ----------------------------------------------------------------
+ echo compressed files
+ cd compressed || echo no such folder
 
-
- ls ./compressed  -lah *.mp4 || echo "no videos here" 
+ ls  -lah *.mp4 || echo "no videos here" 
+ cd ../
 

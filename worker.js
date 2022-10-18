@@ -2,13 +2,13 @@
 import { workerData, threadId, parentPort } from "node:worker_threads";
 import CompressFile from "./processfile.js";
 
-let { filename, dir, size } = workerData;
+let { filename, dir, size ,hwaccel} = workerData;
 
 //await CompressFile(filename, dir, size, threadId)
 
-export default async function Compress({ filename, dir, size }) {
-  let result = await CompressFile(filename, dir, size, "thread:" + threadId);
+export default async function Compress({ filename, dir, size,hwaccel}) {
+  let result = await CompressFile(filename, dir, size, "thread:" + threadId,hwaccel);
   parentPort.postMessage({ result });
 }
 
-Compress({ filename, dir, size });
+Compress({ filename, dir, size ,hwaccel});

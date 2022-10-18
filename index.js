@@ -12,7 +12,7 @@ let file = process.argv[2];
 console.log(file);
 // create a threadpool
 let pool = new Piscina();
-const options = { filename: "./worker.js" };
+const options = { filename: "./threadpoolWorker.js" };
 let sizes = [1080,720,480];
 
 /*
