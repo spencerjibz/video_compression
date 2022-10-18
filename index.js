@@ -34,7 +34,7 @@ let sizes = [1080,720,480];
 	*/
 let result = await Promise.allSettled(
   sizes.map((size) =>
-    pool.run({ filename: file, size, dir: "compressed" }, options)
+    pool.run({ filename: file, size, dir: "compressed" ,hwaccel:true}, options)
   )
 );
 

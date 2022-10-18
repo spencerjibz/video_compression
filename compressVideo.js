@@ -45,5 +45,3 @@ function runinParallel(filename, dir, size,hwaccel) {
 }
 export default ProcessFile
 
-let res = await ProcessFile('sample4k.mp4','compressed',[1080,720,480,360],true,true)
-console.log(res)
