@@ -30,6 +30,7 @@ function Process(
 
 	if (hardwareAccel) {
 		// add option for maco support with h264_videotoolbox
+		console.log('---------------hardware acceleration enabled --------')
 
 		return isMac
 			? new Promise((resolve, reject) => {
