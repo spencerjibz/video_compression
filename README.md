@@ -1,4 +1,4 @@
-### Video compression nodejs
+### Video transcoding nodejs
 Simple tutorial  of video compression with [fluent-ffmpeg](https://github.com/fluent-ffmpeg/node-fluent-ffmpeg).
 
 ### Requirments
