@@ -1,6 +1,7 @@
 import { Worker, isMainThread } from "node:worker_threads"
 import path, { dirname } from "node:path"
 import compressFile from "./processfile.js"
+let file = process.argv[2]
 async function ProcessFile(filename, dir, sizes, multithreaded = true,hwaccel = false) {
 	if (multithreaded) {
 		console.log("------------Multi-threaded Process --------------------")
@@ -50,7 +51,7 @@ let errors =[];
 let result;
  try {
 
-  result = await ProcessFile("sampleFHD.mp4","compressed",[1080,720,480],true,true)
+  result = await ProcessFile(file,"compressed",[1080,720,480],true,true)
  }
  catch(err) {
 	errors.push(err)

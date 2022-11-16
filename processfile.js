@@ -19,10 +19,10 @@ function Process(
 	let finalname = `${name}${size}P.${ext}`
 	//process  the compression and size formating;
 	// set path with @ffmpeg-installer/ffmpeg;
-	 ffmpeg.setFfmpegPath(ffmpegPath.path)
+	 //ffmpeg.setFfmpegPath(ffmpegPath.path)
 	if (isWindows) {
 		//console.log('GOT HERE',isWindows)
-		//ffmpeg.setFfmpegPath("C:\\ffmpeg\\bin\\ffmpeg.exe")
+		ffmpeg.setFfmpegPath("C:\\ffmpeg\\bin\\ffmpeg.exe")
 	}
 	//console.log('file',filename)
 	/*  HARWARE ACCELERATION
