@@ -19,7 +19,7 @@ function Process(
 	let finalname = `${name}${size}P.${ext}`
 	//process  the compression and size formating;
 	// set path with @ffmpeg-installer/ffmpeg;
-	 //ffmpeg.setFfmpegPath(ffmpegPath.path)
+	//ffmpeg.setFfmpegPath(ffmpegPath.path)
 	if (isWindows) {
 		//console.log('GOT HERE',isWindows)
 		ffmpeg.setFfmpegPath("C:\\ffmpeg\\bin\\ffmpeg.exe")
@@ -32,7 +32,7 @@ function Process(
 
 	if (hardwareAccel) {
 		// add option for maco support with h264_videotoolbox
-		console.log('---------------hardware acceleration enabled --------')
+		console.log("---------------hardware acceleration enabled --------")
 
 		return isMac
 			? new Promise((resolve, reject) => {

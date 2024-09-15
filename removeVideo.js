@@ -10,8 +10,7 @@ let dirToEmpty = process.argv[2]
 try {
 	let files = readdirSync(dirToEmpty)
 	files.forEach(async (v) => {
-		  await unlinkPromise(`${dirToEmpty}/${v}`)
-         
+		await unlinkPromise(`${dirToEmpty}/${v}`)
 	})
 } catch (err) {
 	console.log(err)

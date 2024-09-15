@@ -2,12 +2,18 @@ import { Worker, isMainThread } from "node:worker_threads"
 import path, { dirname } from "node:path"
 import compressFile from "./processfile.js"
 let file = process.argv[2]
-async function ProcessFile(filename, dir, sizes, multithreaded = true,hwaccel = false) {
+async function ProcessFile(
+	filename,
+	dir,
+	sizes,
+	multithreaded = true,
+	hwaccel = false
+) {
 	if (multithreaded) {
 		console.log("------------Multi-threaded Process --------------------")
 		/* MULTITHREADED WORK -> n threads for n sizes*/
 		let files = await Promise.all(
-			sizes.map((size) => runinParallel(filename, dir, size,hwaccel))
+			sizes.map((size) => runinParallel(filename, dir, size, hwaccel))
 		)
 		return files
 	} else {
@@ -17,21 +23,21 @@ async function ProcessFile(filename, dir, sizes, multithreaded = true,hwaccel = 
 		//console.time("singlethreaded")
 		let result = await Promise.all(
 			sizes.map((size) =>
-				compressFile(filename, dir, size, "task" + size,true)
+				compressFile(filename, dir, size, "task" + size, true)
 			)
-		);
-        return result;
+		)
+		return result
 	}
 }
 
-function runinParallel(filename, dir, size,hwaccel) {
+function runinParallel(filename, dir, size, hwaccel) {
 	return new Promise(function (resolve, reject) {
 		const worker = new Worker("./worker.js", {
 			workerData: {
 				filename,
 				dir: path.join("./" + dir),
 				size,
-                hwaccel
+				hwaccel,
 			},
 		})
 		// handle messages from worker_threads
@@ -46,18 +52,18 @@ function runinParallel(filename, dir, size,hwaccel) {
 }
 export default ProcessFile
 
-
-let errors =[];
-let result;
- try {
-
-  result = await ProcessFile(file,"compressed",[1080,720,480],true,true)
- }
- catch(err) {
+let errors = []
+let result
+try {
+	result = await ProcessFile(
+		file,
+		"compressed",
+		[1080, 720, 480],
+		true,
+		true
+	)
+} catch (err) {
 	errors.push(err)
- }
-
- finally {
- console.log(errors,result)
-
- }
+} finally {
+	console.log(errors, result)
+}
